@@ -3,7 +3,11 @@ const loadApi=()=>{
     fetch(url)
     .then(res=>res.json())
     .then(data=>displayApi(data.data.tools))
+    if(res){
+        hideSpinner();
+    }
 }
+//display all api
 
 const displayApi=(apis)=>{
     const apisContainer=document.getElementById('apis-container');
@@ -48,7 +52,7 @@ const displayApi=(apis)=>{
             </div>
 
             <div>
-            <i class="fa-solid fa-arrow-right"></i>
+            <i onclick="isplayApiDetails(' ')" class="fa-solid fa-arrow-right data-bs-toggle="modal" data-bs-target="#apiDetailModal"></i>
             </div>
            
           </div>
@@ -62,6 +66,8 @@ const displayApi=(apis)=>{
         apisContainer.appendChild(apiDiv);
         
     });
+    //stop loader
+    hideSpinner(false);
    }
 }
 //see more
@@ -72,6 +78,31 @@ document.getElementById('btn-see-more').addEventListener('click',function(){
     .then(data=>displayApi(data.data.tools))
 
 })
+
+//display api details
+
+const displayApiDetails=api=>{
+    const apiModalDetai=document.getElementById('apiDetailModal');
+    apiModalDetai.classList.add('d-flex')
+    const apiModalDetail1=document.createElement('div');
+    apiModalDetai.innerHTML=`
+
+
+    `
+    const apiModalDetail2=document.createElement('div');
+    apiModalDetail2.innerHTML=`
+    `
+
+    apiModalDetai.appendChild(apiModalDetail1);
+    apiModalDetai.appendChild(apiModalDetail2);
+
+
+}
+//function to hide spinner
+const hideSpinner=()=>{
+    const spinner=document.getElementById('loader');
+    spinner.style.display='none';
+}
 
 
 loadApi();
