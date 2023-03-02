@@ -96,16 +96,35 @@ const displayApiDetails=api=>{
 
     <p>${api.description}<p>
     <div class="d-flex">
-      <div>${api.pricing[0]}</div>
-      <div>${api.pricing[1]}</div>
-      <div>${api.pricing[2]}</div>
-
-      </div>
+    <div>
+    <h5 class="card-title">Features</h5>
+          
+    <p class="card-text"><ol class="list-group list-group-numbered">
+    <li class="list-group-item">${api.features}</li>
+    <li class="list-group-item">${api.features}</li>
+    <li class="list-group-item">${api.features}</li>
+  </ol></p>
+    </div>
+    <div>
+    <h5 class="card-title">Intregations</h5>
+          
+    <p class="card-text"><ol class="list-group list-group-numbered">
+    <li class="list-group-item">${api.integrations[0]}</li>
+    <li class="list-group-item">${api.integrations[1]}</li>
+    <li class="list-group-item">${api.integrations[2]}</li>
+  </ol></p>
+    </div>
+    </div>
     `
 
 
     
-    
+    const modalDetailTwo=document.getElementById('modal-details-two');
+    modalDetailTwo.innerHTML=`
+    <img src="${api.image_link[0]}" class="rounded mx-auto d-block" style="max-width: 100%; alt="...">
+    <h3>${api.input_output_examples[0].input?api.input_output_examples[0].input:api.input_output_examples[1].input}</h3>
+    <p>${ api.input_output_examples[0].output?api.input_output_examples[0].output:api.input_output_examples[1].output}</p>
+    `
     
 
 
