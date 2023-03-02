@@ -1,4 +1,4 @@
-const loadApi=()=>{
+const loadApi=(res)=>{
     const url=`https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
     .then(res=>res.json())
@@ -52,7 +52,7 @@ const displayApi=(apis)=>{
             </div>
 
             <div>
-            <i onclick="displayApiDetails('${api.slug}')" class="fa-solid fa-arrow-right data-bs-toggle="modal" data-bs-target="#apiDetailModal"></i>
+            <button onclick="loadApiDetails('${api.id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#apiDetailModal">Arrow</button>
             </div>
            
           </div>
@@ -80,64 +80,41 @@ document.getElementById('btn-see-more').addEventListener('click',function(){
 })
 
 //api detail fetching
-const loadApiDetalis=(id)=>{
+const loadApiDetails=(id)=>{
     const url=`https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(url)
     .then(res=>res.json())
     .then(data=>displayApiDetails(data.data))
 
 }
-
 //display api details
-
 const displayApiDetails=api=>{
+    console.log(api);
     const apiModalDetai=document.getElementById('apiDetailModal');
-    apiModalDetai.classList.add('d-flex')
-    const apiModalDetail1=document.createElement('div');
-    apiModalDetai.innerHTML=`
-      <p>${api.description}<p>
-      <div class="d-flex">
+    const modalDetailOne=document.getElementById('modal-details-one');
+    modalDetailOne.innerHTML=`
+
+    <p>${api.description}<p>
+    <div class="d-flex">
       <div>${api.pricing[0]}</div>
       <div>${api.pricing[1]}</div>
       <div>${api.pricing[2]}</div>
 
       </div>
-
-      <div class="d-flex">
-      <div>
-      <h5 class="card-title">Features</h5>
-            
-      <p class="card-text"><ol class="list-group list-group-numbered">
-      <li class="list-group-item">${api.features[0]}</li>
-      <li class="list-group-item">${api.features[1]}</li>
-      <li class="list-group-item">${api.features[2]}</li>
-    </ol></p>
-      </div>
-      <div>
-      <h5 class="card-title">Intregations</h5>
-            
-      <p class="card-text"><ol class="list-group list-group-numbered">
-      <li class="list-group-item">${api.integrations[0]}</li>
-      <li class="list-group-item">${api.integrations[1]}</li>
-      <li class="list-group-item">${api.integrations[2]}</li>
-    </ol></p>
-      </div>
-      </div>
-
     `
-    const apiModalDetail2=document.createElement('div');
-    apiModalDetail2.innerHTML=`
-    <img src='${api.image_link}'>
-    <h3>${api.input_output_examples[0].input}</h3>
-    <p>${api.input_output_examples[1].output}</p>
+
+
     
-    `
-
-    apiModalDetai.appendChild(apiModalDetail1);
-    apiModalDetai.appendChild(apiModalDetail2);
+    
+    
 
 
 }
+
+
+
+
+
 //function to hide spinner
 const hideSpinner=()=>{
     const spinner=document.getElementById('loader');
