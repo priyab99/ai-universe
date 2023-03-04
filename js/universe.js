@@ -216,9 +216,6 @@ const displayApiDetails=api=>{
 
 
 }
-
-
-
 //function to hide spinner
 const hideSpinner=()=>{
     const spinner=document.getElementById('loader');
