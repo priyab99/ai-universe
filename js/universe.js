@@ -103,6 +103,24 @@ const displayApiDetails=api=>{
     modalDetailOne.innerHTML=`
 
     <p class="text-black fw-bold">${api.description}  <p>
+     <div class="d-flex juatify-content-between">
+
+     <div class="mx-3 text-success">
+     <p>${api.pricing[0].price}</p>
+     <p>${api.pricing[0].plan}</p>
+     </div>
+     <div class="mx-3 text-warning">
+     <p>${api.pricing[1].price}</p>
+     <p>${api.pricing[1].plan}</p>
+     </div>
+     <div class="mx-3 text-danger">
+     <p>${api.pricing[2].price}</p>
+     <p>${api.pricing[2].plan}</p>
+     </div>
+
+
+     </div>
+
     <div class="d-flex">
     <div>
     <h5 class="card-title">Features</h5>   
