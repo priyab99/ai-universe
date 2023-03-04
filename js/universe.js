@@ -1,4 +1,4 @@
-const loadApi=()=>{
+const loadApi=(res)=>{
     const url=`https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
     .then(res=>res.json())
@@ -216,8 +216,6 @@ const displayApiDetails=api=>{
 
 
 }
-
-
 
 
 
