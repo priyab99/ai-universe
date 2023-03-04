@@ -52,7 +52,7 @@ const displayApi=(apis)=>{
             </div>
 
             <div>
-            <button onclick="loadApiDetails('${api.id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#apiDetailModal">Arrow</button>
+            <i onclick="loadApiDetails('${api.id}')" class="fa-solid fa-arrow-right" data-bs-toggle="modal" data-bs-target="#apiDetailModal"></i>
             </div>
            
           </div>
@@ -90,29 +90,38 @@ const loadApiDetails=(id)=>{
 //display api details
 const displayApiDetails=api=>{
     console.log(api);
-    const apiModalDetai=document.getElementById('apiDetailModal');
+    const apiModalDetal=document.getElementById('apiDetailModal');
+    const apiCardDetal=document.getElementById('modal-details')
     const modalDetailOne=document.getElementById('modal-details-one');
+
+    // Get the features object from the API
+   const features = api.features;
+
+   // Extract the feature names from the features object and store them in an array
+   const featureNames = Object.values(features).map(feature => feature.feature_name);
+  
     modalDetailOne.innerHTML=`
 
-    <p>${api.description}<p>
+    <p class="text-black fw-bold">${api.description}  <p>
     <div class="d-flex">
     <div>
-    <h5 class="card-title">Features</h5>
-          
-    <p class="card-text"><ol class="list-group list-group-numbered">
-    <li class="list-group-item">${api.features}</li>
-    <li class="list-group-item">${api.features}</li>
-    <li class="list-group-item">${api.features}</li>
-  </ol></p>
+    <h5 class="card-title">Features</h5>   
+    <ul>
+    <li>${featureNames[0]}</li>
+    <li>${featureNames[1]}</li>
+    <li>${featureNames[2]}</li>
+   </ul>
+    
+    
     </div>
     <div>
     <h5 class="card-title">Intregations</h5>
           
-    <p class="card-text"><ol class="list-group list-group-numbered">
-    <li class="list-group-item">${api.integrations[0]}</li>
-    <li class="list-group-item">${api.integrations[1]}</li>
-    <li class="list-group-item">${api.integrations[2]}</li>
-  </ol></p>
+    <ul>
+    <li>${api.integrations[0]}</li>
+    <li>${api.integrations[1]}</li>
+    <li>${api.integrations[2]}</li>
+  </ul></p>
     </div>
     </div>
     `
@@ -121,7 +130,11 @@ const displayApiDetails=api=>{
     
     const modalDetailTwo=document.getElementById('modal-details-two');
     modalDetailTwo.innerHTML=`
-    <img src="${api.image_link[0]}" class="rounded mx-auto d-block" style="max-width: 100%; alt="...">
+    <div style="position: relative;">
+    <img src="${api.image_link[0]}" class="rounded mx-auto d-block" style="max-width: 100%;" alt="...">
+    <button class="btn btn-danger" style="position: absolute; top: 0; right: 0;">${api.accuracy.score*100}% accuracy</button>
+  </div>
+  
     <h3>${api.input_output_examples[0].input?api.input_output_examples[0].input:api.input_output_examples[1].input}</h3>
     <p>${ api.input_output_examples[0].output?api.input_output_examples[0].output:api.input_output_examples[1].output}</p>
     `
